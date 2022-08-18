@@ -1,0 +1,108 @@
+{%- macro infobox(Name,Registration_no, Owner_name,Publication_city,Based_in, Language,Periodicity) -%}
+	{{'{{Infobox Magzine'}}
+		| పత్రిక పేరు		= {{Name}}
+        | భాష  = {{Language}}
+		| ఆవర్తనము	= {{Periodicity}}
+		| నమోదు సంఖ్య = {{Registration_no}}
+		| యజమాని పేరు		= {{Owner_name}}
+		| ప్రచురణ నగరం	= {{Publication_city}} 
+		| స్థాపకుడు	= {{Owner_name}}
+		| ఆధారంగా  = {{Based_in}}
+		
+	    
+
+
+		
+	{{'}}\n'}}
+{%- endmacro -%}
+
+{%- macro Intro(Name,Publication_city,Language)-%}
+{%- set line1 =[Name + " అనేది " +Language+" భాష పత్రిక."+"దీని ప్రచురణ నగరం" + Publication_city+"."]|join('')-%}
+{%- set line2 =["ఇది ఒక " +Language+" భాష పత్రిక."+ Publication_city+"దీని ప్రచురణ నగరం" +"."]|join('')-%}
+{%- set line3 =["ఈ  భాష పత్రిక"+Language+" లో ప్రచురించబడుతుంది"]|join('')-%}
+	
+{{[line1,line2,line3] | random}}
+
+{%- endmacro -%}
+
+
+
+
+{%- macro location(Based_in, Name,Owner_name) -%} {#Add more sentences based on review#}
+    
+    {%- if Based_in != 'nan' -%}
+        {%- set line1= ["దీని ప్రధాన కార్యాలయం ",Based_in," లో ఉంది." ] |join('') -%}
+        {%- set line2= [Based_in + " లో దీని ప్రధాన కార్యాలయం ఉంది."] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+	{%- endif -%}
+
+    {%- if Owner_name != 'nan' -%}
+        {%- set line1= [ "ఈ పత్రిక యజమాని "+Owner_name+ "."] |join('') -%}
+        {%- set line2= [ Owner_name+", ఈ పత్రిక యొక్క యజమాని."] |join('') -%}
+    
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+
+	{%- if Name != 'nan' -%}
+        {%- set line1= ["ఇది భారతదేశం లోని పత్రిక" ] |join('') -%}
+        {{ [ line1] | random }}
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+
+
+
+{%- macro History(Publication_city,Owner_name) -%} {#Add more sentences based on review#}
+    
+
+	{%- if Publication_city != 'nan' -%}
+        {%- set line1= [Publication_city+" లో ఈ పత్రిక స్థాపించబడింది." ] |join('') -%}
+        {%- set line2= ["ఈ పత్రిక స్థాపించిన నగరం "+Publication_city+"." ] |join('') -%}
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+
+	 {%- if Owner_name!= 'nan' -%}
+        {%- set line1= [Owner_name+ " ఈ పత్రికను స్థాపించారు." ] |join('') -%}
+        {%- set line2= ["ఈ పత్రికను స్థాపించారు,"+ Owner_name ] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+{%- macro About(Periodicity) -%} {#Add more sentences based on review#}
+    
+   
+
+
+	 {%- if Periodicity!= 'nan' -%}
+        {%- set line1= ["ఈ పత్రిక యొక్క ఆవర్తనము "+Periodicity+"." ] |join('') -%}
+        {%- set line2= ["ఈ యొక్క పత్రిక ఆవర్తనము ,"+Periodicity+"." ] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+
+
+{%- macro ending() -%}
+  {{ '==మూలాలు=='+'\n\n * [http://rni.nic.in/all_page/press_india.aspx  పత్రిక రిఫరెన్స్] \n ' }}
+  
+
+{%- endmacro -%}
+
+{#Main article is generated from here#}
+
+{{-infobox(Name,Registration_no, Owner_name,Publication_city,Based_in, Language,Periodicity)}}
+{{Intro(Name,Publication_city,Language)}}
+{{ location(Based_in, Name,Owner_name) }} 
+{{ History(Publication_city,Owner_name) }}
+{{ About(Periodicity) }}
+{{ ending() }}
+{# Code for References #}

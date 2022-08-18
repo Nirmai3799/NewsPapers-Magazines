@@ -1,0 +1,150 @@
+{%- macro infobox(Name, Editor_in_chief, Categories,Country,Publisher,Founder,Firstissue,Based_in,Company, Language) -%}
+	{{'{{Infobox magazine'}}
+        
+		| title	= {{Name}}
+		| editor	= {{Editor_in_chief}}
+		| category	= {{Categories}}
+		| country		= {{Country}}
+		| publisher	= {{Publisher}} 
+		| founder	= {{Founder}}
+		| firstdate	= {{Firstissue}}
+		| based  = {{Based_in}}
+		| company   = {{Company}}
+	    | language  = {{Language}}
+
+
+		
+	{{'}}\n'}}
+{%- endmacro -%}
+
+{%- macro Intro(Name,Publisher,Country,Language)-%}
+{%- set line1 =[Name + " అనేది " +Language+" భాష పత్రిక."+"దీన్ని ప్రచురించినవారు " + Publisher+"."]|join('')-%}
+{%- set line2 =["ఇది ఒక " +Language+" భాష పత్రిక."+ Publisher+"దీన్ని ప్రచురించినవారు" +"."]|join('')-%}
+{%- set line3 =["ఈ  భాష పత్రిక"+Language+" లో ప్రచురించబడుతుంది"]|join('')-%}
+	
+{{[line1,line2,line3] | random}}
+
+{%- endmacro -%}
+
+
+
+
+{%- macro location(Based_in, Country,Company) -%} {#Add more sentences based on review#}
+    
+    {%- if Based_in != 'నాన్' -%}
+        {%- set line1= ["దీని ప్రధాన కార్యాలయం ",Based_in," లో ఉంది." ] |join('') -%}
+        {%- set line2= [Based_in + " లో దీని ప్రధాన కార్యాలయం ఉంది."] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+	{%- endif -%}
+
+    {%- if Company != 'నాన్' -%}
+        {%- set line1= [ "ఈ పత్రికను "+Company+ " కంపెనీ ప్రచురిస్తుంది."] |join('') -%}
+        {%- set line2= [ "ఈ పత్రికను ప్రచురిసితున్న కంపెనీ,"+Company] |join('') -%}
+    
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+
+	{%- if Country != 'నాన్' -%}
+        {%- set line1= ["ఇది " + Country + " లోని పత్రిక" ] |join('') -%}
+        {{ [ line1] | random }}
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+
+
+{%- macro Editors(Editor,Editor_in_chief,Formereditors) -%} {#Add more sentences based on review#}
+    
+    {%- if Editor!= 'నాన్' -%}
+        {%- set line1= ["ఈ పత్రిక సంపాదకుడు "+Editor+"." ] |join('') -%}
+        {%- set line2= [Editor+" ,ఈ పత్రిక సంపాదకుడు."] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+	
+
+    {%- elif Editor_in_chief != 'నాన్' -%}
+        {%- set line1= [ "ఈ పత్రిక సంపాదకుడు "+Editor_in_chief+"." ] |join('') -%}
+        {%- set line2= [Editor+" ,ఈ పత్రిక సంపాదకుడు."] |join('') -%}
+    
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+
+	{%- if Formereditors != 'నాన్' -%}
+        {%- set line1= ["ఈ పత్రిక మాజీ సంపాదకులు "+Formereditors +"." ] |join('') -%}
+        {%- set line2= [Formereditors+ " ,వీళ్ళు ఈ పత్రిక మాజీ సంపాదకులు "] |join('') -%}
+        {{ [ line1 ,line2] | random }}
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+{%- macro History(Firstissue,YearFounded) -%} {#Add more sentences based on review#}
+    
+   
+
+	{%- if YearFounded != 'నాన్' -%}
+        {%- set line1= [YearFounded+" సంవత్సరంలో ఈ పత్రిక స్థాపించబడింది." ] |join('') -%}
+        {%- set line2= ["ఈ పత్రికా స్థాపించిన సంవత్సరం "+YearFounded+"." ] |join('') -%}
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+
+	 {%- if Firstissue!= 'నాన్' -%}
+        {%- set line1= ["ఈ పత్రిక మొదటి సంచిక "+Firstissue+ " తేదీన విడుదలైంది." ] |join('') -%}
+        {%- set line2= [Firstissue+ " తేదీన ఈ పత్రిక మొదటి సంచిక విడుదలైంది." ] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+{%- macro About(Categories,Circulation,ISSN,Frequency) -%} {#Add more sentences based on review#}
+    
+   
+
+	{%- if Categories!= 'నాన్' -%}
+        {%- set line1= [Categories+" అనేవి పత్రికల వర్గాలు." ] |join('') -%}
+        {%- set line2= ["విటి వర్గాలు ఏంటంటే,"+Categories+"."] |join('') -%}
+        {{ [ line1,line2 ] | random }}
+    {%- endif -%}
+	{%- if Circulation!= 'నాన్' -%}
+        {%- set line1= ["ఇది "+Circulation +" సర్క్యులేషన్ కలిగి ఉంది." ] |join('') -%}
+        {%- set line2= ["దినికి "+Circulation +"సర్క్యులేషన్ ఉంది." ] |join('') -%}
+        {{ [ line1,line2] | random }}
+    {%- endif -%}
+
+	 {%- if ISSN!= 'nan' -%}
+        {%- set line1= ["దీని issn సంఖ్య "+ISSN +"."] |join('') -%}
+        {%- set line2= ["ఈ యొక్క పత్రిక ISSN సంఖ్య ,"+ISSN +"."] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+    {%- endif -%}
+	 {%- if Frequency!= 'నాన్' -%}
+        {%- set line1= ["ఈ పత్రిక యొక్క ఫ్రీక్వెన్సీ "+Frequency+"." ] |join('') -%}
+        {%- set line2= ["ఈ యొక్క పత్రిక ఫ్రీక్వెన్సీ ,"+Frequency+"." ] |join('') -%}
+	    {{ [ line1,line2] | random }}
+	
+    {%- endif -%}
+
+{%- endmacro -%}
+
+
+{%- macro ending() -%}
+  {{ '==మూలాలు=='+'\n\n * https://en.wikipedia.org/wiki/List_of_magazines_in_India  పత్రిక రిఫరెన్స్ ] \n  https://www.wikiwand.com/en/List_of_magazines_in_India \n' }}
+  
+
+{%- endmacro -%}
+
+
+{#Main article is generated from here#}
+
+{{-infobox(Name, Editor_in_chief, Categories,Country,Publisher,Founder,Firstissue,Based_in,Company, Language)}}
+{{Intro(Name, Publisher, Country,Language)}}
+{{ location(Based_in, Country, Company) }} 
+{{ Editors(Editor, Editor_in_chief, Formereditors) }} 
+{{ History(Firstissue,YearFounded) }}
+{{ About(Categories,Circulation,ISSN,Frequency) }}
+{{ ending() }}
+{# Code for References #}
